@@ -1,9 +1,8 @@
 val sharedSettings = Seq(
   organization  := "com.lihaoyi",
   version := "0.1.0",
-  publishTo := Some("releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
   pomExtra :=
-    <url>https://github.com/lihaoyi/Scalite</url>
+    <url>https://github.com/PhilAndrew/Scalite</url>
       <licenses>
         <license>
           <name>MIT license</name>
@@ -11,8 +10,8 @@ val sharedSettings = Seq(
         </license>
       </licenses>
       <scm>
-        <url>git://github.com/lihaoyi/Scalite.git</url>
-        <connection>scm:git://github.com/lihaoyi/Scalite.git</connection>
+        <url>git://github.com/PhilAndrew/Scalite.git</url>
+        <connection>scm:git://github.com/PhilAndrew/Scalite.git</connection>
       </scm>
       <developers>
         <developer>
@@ -23,16 +22,17 @@ val sharedSettings = Seq(
       </developers>
 )
 lazy val api = project.settings(sharedSettings:_*).settings(
-  name := "scalite",
+  name := "scalite-phil",
   version       := scalite.SbtPlugin.scaliteVersion,
   scalaVersion  := "2.11.4",
   libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value,
+  libraryDependencies += "com.moandjiezana.toml" % "toml4j" % "0.4.0",
   (resources in Test) ++=  (managedClasspath in Compile).value.map(_.data)
 )
 
 lazy val scaliteSbtPlugin = project.settings(sharedSettings:_*)
   .settings(
-    name := "scalite-sbt-plugin",
+    name := "scalite-sbt-plugin-phil",
     scalaVersion := "2.10.4",
     sbtPlugin := true
   )
@@ -74,5 +74,7 @@ lazy val scalajsExample = project.settings(scalaJSSettings ++ scalite.SbtPlugin.
     "org.scala-lang.modules.scalajs" %%% "scalajs-dom" % "0.6"
   )
 )
+
 publishArtifact := false
+
 

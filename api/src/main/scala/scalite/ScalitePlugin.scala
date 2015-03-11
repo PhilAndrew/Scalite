@@ -30,8 +30,20 @@ class ScalitePlugin(val global: Global) extends Plugin {
     override def newPhase(prev: Phase) = new StdPhase(prev){
 
       def apply(unit: global.CompilationUnit): Unit = {
+        
         if (unit.source.file.name.endsWith(".scalite")){
-          val txt = unit.source.content.mkString.replace("\n//", "\n").drop(2)
+
+          //val a = unit.source.content.mkString
+          //val b = unit.source.content.mkString.replace("\n//", "\n").drop(2)
+          //import java.nio.file.{Paths, Files}
+          //import java.nio.charset.StandardCharsets
+          //Files.write(Paths.get("\\home\\a.txt"), a.getBytes(StandardCharsets.UTF_8))
+          //Files.write(Paths.get("\\home\\b.txt"), b.getBytes(StandardCharsets.UTF_8))
+
+          val scaliteText = unit.source.content.mkString.replace("\n//", "\n").drop(2)
+          val txt = PreProcessScaliteFile.process(scaliteText)
+          //.replace("\"ScalaJS:\"", "\"XXX:\"")
+
           val singleFile = new io.VirtualFile(unit.source.file.name)
           val output = singleFile.output
           output.write(txt.getBytes)

@@ -27,7 +27,7 @@ object SbtPlugin extends sbt.AutoPlugin{
   )
   override val projectSettings = inConfig(Test)(mySeq) ++ inConfig(Compile)(mySeq) ++ Seq(
     autoCompilerPlugins := true,
-    addCompilerPlugin("com.lihaoyi" %% "scalite" % scalite.SbtPlugin.scaliteVersion),
+    addCompilerPlugin("com.lihaoyi" %% "scalite-phil" % scalite.SbtPlugin.scaliteVersion),
     watchSources ++= ((scaliteDirectory in Compile).value ** "*.scalite").get
   )
 }
