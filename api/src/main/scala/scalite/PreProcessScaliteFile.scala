@@ -85,7 +85,7 @@ object PreProcessScaliteFile {
         result = "//" + line :: result
     }
 
-    result.reverse.map( (d:String) => println(":!:" + d))
+    //result.reverse.map( (d:String) => println(":!:" + d))
     result.reverse.mkString(NL)
         /**/
 
